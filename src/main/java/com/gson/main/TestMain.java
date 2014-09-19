@@ -1,5 +1,10 @@
 package com.gson.main;
 
+import java.io.StringWriter;
+
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
+
 import com.google.gson.Gson;
 
 public class TestMain {
@@ -14,7 +19,20 @@ public class TestMain {
 		
 		valor = gson.fromJson(json,Objeto.class);
 		System.out.println(valor.getAtributo()+" "+valor.getAtributo2());
-
+		
+		
+		//xml
+		Serializer serializer = new Persister();
+		StringWriter stringWriter=new StringWriter();
+		try {
+			serializer.write(valor, stringWriter);
+			System.out.println(stringWriter.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }
